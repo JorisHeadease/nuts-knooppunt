@@ -41,6 +41,46 @@ A docker compose config is provided to run a set of services that are useful for
 Start the stack with:
 
 ```shell
-docker compose -f docker-compose.dev.yml up
+docker compose up
 ```
 
+
+## Architecture Diagrams
+
+The C4 architecture diagrams are automatically generated from the Structurizr DSL definition in [`docs/c4-diagram.structurizr`](docs/c4-diagram.structurizr). To generate them locally
+run the following command:
+
+```bash
+docker run --rm -v "$(pwd)/docs":/docs extenda/structurizr-to-png --path c4-diagram.structurizr --output images
+```
+
+### System Landscape
+![System Landscape](docs/images/structurizr-Landscape1.png)
+
+### System Context - Nuts Knooppunt
+![System Context - Nuts Knooppunt](docs/images/structurizr-Diagram1.png)
+
+### System Context - XIS
+![System Context - XIS](docs/images/structurizr-XisDiagram.png)
+
+### Container Diagram
+![Container Diagram](docs/images/structurizr-Diagram2.png)
+
+### Component Diagram
+![Component Diagram](docs/images/structurizr-knooppunt.png)
+
+
+## Configuration
+
+- `KNPT_CONFIGDIR`: Directory where the configuration files are stored. Defaults to `./config`.
+
+## Components
+
+This section lists the components of the application, commonly used endpoints and configuration options.
+
+### Nuts node
+The embedded [Nuts node](https://github.com/nuts-foundation/nuts-node) can be configured through environment variables prefixed with `NUTS_`, or by using a configuration file called `config.nuts.yaml`.
+
+Endpoints:
+- Public status page: [http://localhost:8080/nuts/status](http://localhost:8080/nuts/status)
+- Internal diagnostics page: [http://localhost:8081/nuts/status/diagnostics](http://localhost:8081/nuts/status/diagnostics)
